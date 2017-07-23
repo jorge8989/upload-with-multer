@@ -1,0 +1,10 @@
+<h1>Upload images with Multer</h1>
+<form class="" action="/profile" method="post" enctype="multipart/form-data">
+  <input type="file" name="avatar" accept="image/*"><br /><br />
+  <input type="submit" value="Upload">
+</form>
+<% if (photos) { %>
+  <% photos.forEach(function (photo, index) { %>
+    <img src="/uploads/<%= photo.fileName %>" style="width: 30%;"/><hr />
+  <% }) %>
+<% } %>
