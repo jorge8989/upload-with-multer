@@ -28,3 +28,8 @@ module.exports.getPhotos = function(callback, limit) {
 module.exports.addPhoto = function(photo, callback) {
   Photo.create(photo, callback);
 }
+
+module.exports.removePhoto = (id, callback) => {
+  const query = {_id: id};
+  Photo.findOneAndRemove(query, {}, callback);
+}

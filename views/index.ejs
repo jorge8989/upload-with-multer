@@ -3,8 +3,11 @@
   <input type="file" name="avatar" accept="image/*"><br /><br />
   <input type="submit" value="Upload">
 </form>
+<hr />
 <% if (photos) { %>
   <% photos.forEach(function (photo, index) { %>
-    <img src="/uploads/<%= photo.fileName %>" style="width: 30%;"/><hr />
+    <p><%= photo._id %></p>
+    <img src="/uploads/<%= photo.fileName %>" style="width: 30%;"/>
+    <hr />
   <% }) %>
 <% } %>

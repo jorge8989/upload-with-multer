@@ -5,6 +5,7 @@ var path = require('path');
 var multer = require('multer');
 var upload = multer({dest: '/home/jorge/projects/fileuploadmulter/public/uploads'});
 var mongoose = require('mongoose');
+var fs = require('fs');
 Photo = require('./models/photo.js');
 mongoose.connect('mongodb://localhost/multer');
 var db = mongoose.connection;
@@ -35,6 +36,16 @@ app.post('/profile', upload.single('avatar'), (req, res, next) => {
       console.log(err);
     }
     res.redirect('/');
+  });
+});
+
+app.delete('/photos/:_id', (req, res) => {
+  Photo.removePhoto(req.params._id, (err, photo) => {
+    if (err) throw err;
+    fs.unlink(photo.filePath, (err) => {
+      if (err) throw err;
+      res.send('photo deleted');
+    });
   });
 });
 
